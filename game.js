@@ -38,18 +38,30 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
 // Universal pointer handlers for hybrid mobile/desktop inputs
-document.getElementById('left-btn').addEventListener('pointerdown', (e) => { e.preventDefault(); moveLeft = true; });
-document.getElementById('left-btn').addEventListener('pointerup', (e) => { e.preventDefault(); moveLeft = false; });
-document.getElementById('left-btn').addEventListener('pointerleave', (e) => { e.preventDefault(); moveLeft = false; });
+const leftBtn = document.getElementById('left-btn');
+const rightBtn = document.getElementById('right-btn');
+const fireBtn = document.getElementById('fire-btn');
 
-document.getElementById('right-btn').addEventListener('pointerdown', (e) => { e.preventDefault(); moveRight = true; });
-document.getElementById('right-btn').addEventListener('pointerup', (e) => { e.preventDefault(); moveRight = false; });
-document.getElementById('right-btn').addEventListener('pointerleave', (e) => { e.preventDefault(); moveRight = false; });
+if (leftBtn) {
+    leftBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); moveLeft = true; }, { passive: false });
+    leftBtn.addEventListener('pointerup', (e) => { e.preventDefault(); moveLeft = false; }, { passive: false });
+    leftBtn.addEventListener('pointerleave', (e) => { e.preventDefault(); moveLeft = false; }, { passive: false });
+    leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveLeft = true; }, { passive: false });
+    leftBtn.addEventListener('touchend', (e) => { e.preventDefault(); moveLeft = false; }, { passive: false });
+}
 
-document.getElementById('fire-btn').addEventListener('pointerdown', (e) => { 
-    e.preventDefault(); 
-    fireBullet(); 
-});
+if (rightBtn) {
+    rightBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); moveRight = true; }, { passive: false });
+    rightBtn.addEventListener('pointerup', (e) => { e.preventDefault(); moveRight = false; }, { passive: false });
+    rightBtn.addEventListener('pointerleave', (e) => { e.preventDefault(); moveRight = false; }, { passive: false });
+    rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveRight = true; }, { passive: false });
+    rightBtn.addEventListener('touchend', (e) => { e.preventDefault(); moveRight = false; }, { passive: false });
+}
+
+if (fireBtn) {
+    fireBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); fireBullet(); }, { passive: false });
+    fireBtn.addEventListener('touchstart', (e) => { e.preventDefault(); fireBullet(); }, { passive: false });
+}
 
 // Keyboard configurations
 window.addEventListener('keydown', (e) => {
