@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Mind Defender</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+	<div id="ui-layer">
+		<div>Time: <span id="timer-val">60</span>s</div>
+		<div>Score: <span id="score-val">0</span></div>
+	</div>
+
+	<canvas id="canvas"></canvas>
+
+	<div id="controls">
+		<button class="btn" id="left-btn">◀ Left</button>
+		<button class="btn" id="fire-btn">FIRE 🚀</button>
+		<button class="btn" id="right-btn">Right ▶</button>
+	</div>
+
+	<!-- Start Screen -->
+	<div id="start-screen" class="screen">
+		<h1>Mind Defender</h1>
+		<p>Destroy the negative thoughts before they reach the bottom. Survive for 60 seconds to win!</p>
+		<button class="btn" id="start-btn">Start Game</button>
+	</div>
+
+	<!-- Win Screen -->
+	<div id="win-screen" class="screen hidden">
+		<h1>You Win! 🎉</h1>
+		<p>You successfully protected your peace of mind and cleared the negativity.</p>
+		<button class="btn" id="restart-win-btn">Play Again</button>
+	</div>
+
+	<!-- Lose Screen -->
+	<div id="lose-screen" class="screen hidden">
+		<h1>Game Over 💔</h1>
+		<p>The negativity overwhelmed you this time. Don't give up, try again!</p>
+		<button class="btn" id="restart-lose-btn">Try Again</button>
+	</div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
