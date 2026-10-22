@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0b1120">
-<title>Night Train to Mecca</title>
+<title>The Long Train Home</title>
 <style>html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,7 +139,7 @@ h1.zhf{font-family:var(--f-zh);font-weight:700;font-size:clamp(2.4rem,11vw,4rem)
 
   <section id="lang" class="screen">
     <div class="title-inner">
-      <p class="eyebrow">Night Train to Mecca · 开往麦加的夜车</p>
+      <p class="eyebrow">The Long Train Home · 回家的夜车</p>
       <h2 class="lang-h">Choose a language</h2>
       <p class="lang-h2">选择语言</p>
       <div class="lang-row">
@@ -154,7 +154,6 @@ h1.zhf{font-family:var(--f-zh);font-weight:700;font-size:clamp(2.4rem,11vw,4rem)
       <p class="eyebrow" data-t="eyebrow"></p>
       <h1 id="tH1"></h1>
       <p class="t-sub" id="tSub"></p>
-      <p class="t-ar" dir="rtl" lang="ar">قطار الليل إلى مكة</p>
       <p class="lede" data-t="lede"></p>
       <button id="begin" class="btn" data-t="begin"></button>
       <p class="small" data-t="small"></p>
@@ -178,7 +177,7 @@ h1.zhf{font-family:var(--f-zh);font-weight:700;font-size:clamp(2.4rem,11vw,4rem)
       </div>
       <div class="hud-right">
         <button class="chip" id="nbBtn"><span data-t="notes"></span> <b id="nbCount">0/8</b></button>
-        <button class="chip" id="spdBtn"><b id="spdVal">×4</b></button>
+        <button class="chip" id="spdBtn"><b id="spdVal">×6</b></button>
         <button class="chip" id="sndBtn" aria-pressed="true">♪</button>
       </div>
     </div>
@@ -237,9 +236,9 @@ addEventListener('resize',resize);resize();
 let LANG='en';
 try{const s=localStorage.getItem('ntm-lang');if(s==='zh'||s==='en')LANG=s;}catch(_){}
 const TX={
- en:{eyebrow:'Green sleeper · Beijing West → Lanzhou',h1:'Night Train<br>to Mecca',sub:'开往麦加的夜车',
-   lede:'A Hui student falls asleep on the long train home and wakes on the white marble around the Kaaba. Walk his seven circuits.',
-   begin:'Board the train',small:'Sound helps · drag to walk · speed starts at ×4',cont:'Continue',notes:'Notes',
+ en:{eyebrow:'Green sleeper · Beijing West → Lanzhou',h1:'The Long<br>Train Home',sub:'回家的夜车',
+   lede:'Winter break. A nineteen-year-old student boards the old green sleeper from Beijing to Lanzhou: a whole night of rails, mountains and tunnels. Ride along with him.',
+   begin:'Board the train',small:'Sound helps · tap to continue',cont:'Continue',notes:'Notes',
    dua:'Our Lord, give us good in this world and good in the next, and protect us from the Fire. (2:201)',
    nbTitle:'Ma Mingze’s notebook',nbSub:n=>n+' of 8 written',close:'Close',
    endEyebrow:'Arriving · Lanzhou',endH:'Seven circuits',endSub:'For his grandmother',stTime:'Tawaf time',stTk:'Takbirs',stNb:'Notes',
@@ -258,10 +257,12 @@ const TX={
    tPray:['Behind the Station of Ibrahim','He prays two rak‘ahs, facing the Kaaba.'],
    tDrink:['Now drink Zamzam','The coolers stand near the outer edge of the Mataf. Follow the blue arrow.'],
    tBism:['Bismillah','He fills a paper cup, faces the Kaaba, and drinks.'],
-   tSpeed:s=>['Speed ×'+s,s===1?'The pace of the real crowd':s===2?'Twice the crowd’s pace':'Four times the crowd’s pace']},
- zh:{eyebrow:'绿皮卧铺 · 北京西 → 兰州',h1:'开往麦加<br>的夜车',sub:'Night Train to Mecca',
-   lede:'一个回族大学生在回家的长途火车上睡着了，醒来时，脚下是天房周围洁白的大理石。陪他走完七圈。',
-   begin:'上车',small:'建议打开声音 · 拖动行走 · 初始速度 ×4',cont:'继续',notes:'笔记',
+   ahName:'Ahmad',ah1:'My name is Ahmad.',ah2:'I wish you a happy time at university.',
+   tAhmad:['“My name is Ahmad. I wish you a happy time at university.”','A man in white walks up to him through the crowd and smiles.'],
+   tSpeed:s=>['Speed ×'+s,s===1?'The pace of the real crowd':s===2?'Twice the crowd’s pace':s+' times the crowd’s pace']},
+ zh:{eyebrow:'绿皮卧铺 · 北京西 → 兰州',h1:'回家的<br>夜车',sub:'The Long Train Home',
+   lede:'放寒假了。一个十九岁的大学生登上从北京开往兰州的绿皮卧铺车：一整夜的铁轨、群山和隧道。陪他一起坐这趟车吧。',
+   begin:'上车',small:'建议打开声音 · 点击继续',cont:'继续',notes:'笔记',
    dua:'我们的主啊！求你在今世赏赐我们美好的，在后世也赏赐我们美好的，求你保护我们，免受火狱的刑罚。（2:201）',
    nbTitle:'马铭泽的笔记本',nbSub:n=>'已写 '+n+' / 8 页',close:'关闭',
    endEyebrow:'到站 · 兰州',endH:'七圈',endSub:'替奶奶转了七圈',stTime:'巡游用时',stTk:'大赞',stNb:'笔记',
@@ -280,7 +281,9 @@ const TX={
    tPray:['在易卜拉欣立足处后面','他面向天房，礼了两拜。'],
    tDrink:['现在去喝渗渗泉水','饮水桶在巡游场外缘，跟着蓝色箭头走。'],
    tBism:['奉安拉之名','他接了一纸杯水，面向天房，喝了下去。'],
-   tSpeed:s=>['速度 ×'+s,s===1?'和真实人群一样的步速':s===2?'人群步速的两倍':'人群步速的四倍']}
+   ahName:'艾哈迈德',ah1:'我叫艾哈迈德。',ah2:'祝你大学生活愉快！',
+   tAhmad:['“我叫艾哈迈德。祝你大学生活愉快！”','一个穿白衣的人穿过人群，走到他面前，笑了笑。'],
+   tSpeed:s=>['速度 ×'+s,s===1?'和真实人群一样的步速':s===2?'人群步速的两倍':'人群步速的'+s+'倍']}
 };
 const tx=k=>TX[LANG][k];
 const zhClass=el=>el.classList.toggle('zhf',LANG==='zh');
@@ -300,7 +303,7 @@ $('pickZh').addEventListener('click',()=>pickLang('zh'));
 $('toLang').addEventListener('click',()=>{$('title').hidden=true;$('lang').hidden=false;});
 
 /* ---------------- speed ---------------- */
-const SPEEDS=[4,2,1];let spdI=0;
+const SPEEDS=[6,4,2,1];let spdI=0;
 const spd=()=>SPEEDS[spdI];
 $('spdBtn').addEventListener('click',()=>{spdI=(spdI+1)%SPEEDS.length;$('spdVal').textContent='×'+spd();const m=tx('tSpeed')(spd());toast(m[0],m[1],1800);});
 
@@ -390,7 +393,7 @@ const found=new Set();
 const TRAIN_LINES=[
  {en:'Ma Mingze is nineteen, a Hui student from Lanzhou studying Computer and Communications in Beijing.',zh:'马铭泽，十九岁，兰州回族，在北京读计算机与通信专业。'},
  {en:'Winter break. He has a lower berth on the old green sleeper home: a whole night and most of a day across the north.',zh:'放寒假了。他买到一张回家的绿皮车下铺：一整夜，再加大半个白天，横穿北方。'},
- {en:'Before he left, his grandmother called. “One day you will walk around the Kaaba,” she said. “I never got to go. Walk one circuit for me.”',zh:'临走前奶奶打来电话：“总有一天你会去转天房。奶奶一直没能去成。替奶奶也转一圈。”'},
+ {en:'Before he left, his grandmother called. “There is one place I have wanted to see my whole life,” she said, “but my legs are too old now. One day, go there for me.”',zh:'临走前奶奶打来电话：“奶奶这辈子一直想去一个地方，可是腿脚不行了。总有一天，你替奶奶去吧。”'},
  {en:'He rests his forehead on the cold window. The wheels keep their rhythm. Ahead, a tunnel opens in the mountain.',zh:'他把额头贴在冰凉的车窗上。车轮咔嗒，咔嗒。前面，山里张开一个隧道口。'},
  {en:'Then there is light.',zh:'然后，是光。',btn:{en:'Into the tunnel',zh:'驶进隧道'}}
 ];
@@ -398,8 +401,8 @@ const ARRIVE_LINES=[
  {ar:'لَبَّيْكَ اللّٰهُمَّ لَبَّيْكَ',en:'Warm air. A sound like the sea: tens of thousands of voices, all calling the same words.',zh:'温暖的空气。一种像大海一样的声音：成千上万的人，在念同一句话。'},
  {en:'His hoodie and jeans are gone. He is wrapped in two white cloths, like every man around him.',zh:'他的卫衣和牛仔裤不见了。他身上裹着两块白布，和身边每一个男人一样。'},
  {en:'And in front of him, black and gold under the floodlights: the Kaaba.',zh:'在他面前，泛光灯下，一片黑色与金色：天房。'},
- {en:'Walk seven circuits counter-clockwise, keeping the Kaaba on your left. Begin at the green line by the Black Stone. Drag anywhere on the screen to walk. The ×4 button changes your walking speed.',
-  zh:'逆时针走七圈，让天房始终在你的左手边。从黑石旁的绿线开始。在屏幕任意位置拖动即可行走。“×4”按钮可以调整行走速度。',btn:{en:'Begin tawaf',zh:'开始巡游'}}
+ {en:'Walk seven circuits counter-clockwise, keeping the Kaaba on your left. Begin at the green line by the Black Stone. Drag anywhere on the screen to walk. The ×6 button changes your walking speed.',
+  zh:'逆时针走七圈，让天房始终在你的左手边。从黑石旁的绿线开始。在屏幕任意位置拖动即可行走。“×6”按钮可以调整行走速度。',btn:{en:'Begin tawaf',zh:'开始巡游'}}
 ];
 function homeLines(){
   const got=MARKS.filter(m=>found.has(m.id));
@@ -409,7 +412,7 @@ function homeLines(){
    {en:'Ma Mingze lifts his head from the window. Pink light lies over the Yellow River valley.',zh:'马铭泽从车窗上抬起头。粉色的晨光铺在黄河谷地上。'},
    {en:'His notebook is open on the little table, the page full of his own handwriting:\n'+words+'.',zh:'小桌上摊着他的笔记本，整页都是他自己的字：\n'+words+'。'},
    {en:'His lips are still cool, as if he had just been drinking cold water.',zh:'他的嘴唇还是凉凉的，好像刚喝过冰水。'},
-   {en:'He takes out his phone and calls his grandmother. “Grandma, I walked seven circuits for you.”',zh:'他掏出手机，给奶奶打电话：“奶奶，我替你转了七圈。”',btn:{en:'Finish',zh:'结束'}}
+   {en:'He takes out his phone and calls his grandmother. “Grandma, I went there for you. I walked seven circuits around the Kaaba.”',zh:'他掏出手机，给奶奶打电话：“奶奶，我替你去了。我绕着天房转了七圈。”',btn:{en:'Finish',zh:'结束'}}
   ];
 }
 let SQ=[],SI=0,SD=null,SLock=0;
@@ -426,6 +429,7 @@ $('story').addEventListener('click',advance);
 let scene='lang',st=0,T=0,stage='tawaf';
 const go=s=>{scene=s;st=0;};
 const P={};const GP={spawned:false,talked:false};
+const AH={on:false,wait:0,phase:'',t:0,x:0,y:0,dir:0,bub:''};
 let agents=[],floats=[],pulses=[],greetT=4;
 const cam={x:0,y:0,s:10};
 const sNear=()=>clamp(Math.min(W,H)/24,11,30),sFar=()=>Math.min(W,H)/98;
@@ -444,7 +448,7 @@ function setupTawaf(){
   const a=-PI+0.2,r=11;
   Object.assign(P,{x:Math.cos(a)*r,y:Math.sin(a)*r,vx:0,vy:0,px:0,py:0,dir:0,la:a,prog:-wrap(a-PI),next:0,tk:[],tkc:0,
     prayed:false,t0:0,tEnd:0,lock:0,moved:false,near:0,av:0,wrongT:0,wrongCool:0,born:T});
-  stage='tawaf';GP.spawned=false;GP.talked=false;floats=[];pulses=[];greetT=4;
+  stage='tawaf';AH.on=false;AH.wait=0;GP.spawned=false;GP.talked=false;floats=[];pulses=[];greetT=4;
   cam.x=0;cam.y=0;cam.s=sFar();updatePips();updateNb();
 }
 
@@ -576,12 +580,21 @@ function updatePlayer(dt){
     setAct(tx('actPray'),()=>{setAct('',null);P.lock=3.8;veilTo(0.78,0.7,'#05080f');toastT(tx('tPray'),3600);
       setTimeout(()=>{veilTo(0,0.9);P.prayed=true;toastT(tx('tDrink'),3800);},3700);});
   }else if(stage==='after'&&P.lock<=0&&P.prayed&&Math.hypot(P.x-ZZ.x,P.y-ZZ.y)<3.2){
-    setAct(tx('actDrink'),()=>{setAct('',null);P.lock=99;toastT(tx('tBism'),2600);
-      setTimeout(()=>veilTo(1,2.2,'#fff6ea'),1600);setTimeout(goHome,4000);});
+    setAct(tx('actDrink'),()=>{setAct('',null);P.lock=999;toastT(tx('tBism'),2600);AH.wait=2.4;});
   }else setAct('',null);
   greetT-=dt;if(greetT<=0){greetT=rnd(3.5,7);const cand=agents.filter(g=>!g.gp&&g.bubT<=0&&Math.hypot(g.x-P.x,g.y-P.y)<6);
     if(cand.length){const g=cand[(Math.random()*cand.length)|0];g.bub=GREET[(Math.random()*GREET.length)|0];g.bubT=2.8;}}
   hudText();
+}
+function updateAhmad(dt){
+  if(AH.wait>0){AH.wait-=dt;if(AH.wait<=0){
+    const pr=Math.hypot(P.x,P.y)||1,dx=-P.x/pr,dy=-P.y/pr,q={x:P.x+dx*7-dy*1.5,y:P.y+dy*7+dx*1.5};solveSolids(q,0.3);
+    Object.assign(AH,{on:true,phase:'walk',t:0,x:q.x,y:q.y,bub:''});}}
+  if(!AH.on)return;AH.t+=dt;
+  const dx=P.x-AH.x,dy=P.y-AH.y,d=Math.hypot(dx,dy);AH.dir=Math.atan2(dy,dx);P.dir=Math.atan2(-dy,-dx);
+  if(AH.phase==='walk'){if(d>1.15){const v=1.8*Math.min(1,d);AH.x+=dx/d*v*dt;AH.y+=dy/d*v*dt;}else{AH.phase='talk';AH.t=0;AH.bub=tx('ah1');toastT(tx('tAhmad'),7000);}}
+  else if(AH.phase==='talk'){if(AH.t>2.8&&AH.bub===tx('ah1'))AH.bub=tx('ah2');
+    if(AH.t>6.4){AH.phase='done';AH.bub='';veilTo(1,2.2,'#fff6ea');setTimeout(goHome,2400);}}
 }
 let clackT=0;
 function update(dt){
@@ -590,7 +603,7 @@ function update(dt){
   if(scene==='train'||scene==='tunnel'||scene==='home'){clackT-=dt;if(clackT<=0){clackT=scene==='home'?0.95:0.66;clack(0.22);setTimeout(()=>clack(0.15),115);}}
   if(scene==='tunnel'&&st>2.0&&V.a>0.98)enterArrive();
   if(scene==='arrive'){updateCrowd(dt,false);const e=ease(clamp(st/9,0,1));cam.s=lerp(sFar(),sNear(),e);cam.x=lerp(0,P.x,e);cam.y=lerp(0,P.y,e);}
-  if(scene==='play'){updateCrowd(dt,true);updatePlayer(dt);const k=Math.min(1,dt*5);cam.x+=(P.x-cam.x)*k;cam.y+=(P.y-cam.y)*k;cam.s+=(sNear()-cam.s)*Math.min(1,dt*2);}
+  if(scene==='play'){updateCrowd(dt,true);updatePlayer(dt);updateAhmad(dt);const k=Math.min(1,dt*6);cam.x+=(P.x-cam.x)*k;cam.y+=(P.y-cam.y)*k;cam.s+=(sNear()-cam.s)*Math.min(1,dt*2);}
   for(const f of floats)f.t+=dt;floats=floats.filter(f=>f.t<2.2);
   for(const p of pulses)p.t+=dt;pulses=pulses.filter(p=>p.t<1.4);
 }
@@ -732,6 +745,7 @@ function renderMataf(){
   if(scene==='play'||scene==='arrive'){ring(P.x,P.y,0.55+Math.sin(T*3)*0.04,'rgba(217,178,95,.95)',0.09);
     drawPerson(P.x,P.y,P.dir,{body:'#ffffff',head:'#1f1915',skin:'#d9a77c',fem:false});
     if(behind(P.x,P.y))ring(P.x,P.y,0.75,'rgba(241,217,153,.8)',0.06,[0.15,0.12]);}
+  if(AH.on){ring(AH.x,AH.y,0.5,'rgba(58,143,200,.8)',0.07);drawPerson(AH.x,AH.y,AH.dir,{body:'#fbfbf7',head:'#2a211c',skin:'#b97f55',fem:false});}
   for(const p of pulses)ring(p.x,p.y,0.6+p.t*5,'rgba(217,178,95,'+(1-p.t/1.4).toFixed(2)+')',0.12);
 }
 const sx=x=>W/2+(x-cam.x)*cam.s,sy=y=>H/2+(y-cam.y)*cam.s;
@@ -753,6 +767,7 @@ function renderOverlay(){
   for(const f of floats){const x=sx(f.x),y=sy(f.y)-30-f.t*40;ctx.globalAlpha=clamp(2.2-f.t,0,1);ctx.font='700 26px Amiri, serif';ctx.textAlign='center';ctx.textBaseline='middle';
     ctx.lineWidth=4;ctx.strokeStyle='rgba(20,16,8,.6)';ctx.strokeText(f.txt,x,y);ctx.fillStyle='#f1d999';ctx.fillText(f.txt,x,y);ctx.globalAlpha=1;}
   if(scene!=='play')return;
+  if(AH.on){const x=sx(AH.x),y=sy(AH.y);if(AH.bub)bubble(x,y-cam.s*0.2,AH.bub,true);else{ctx.font=uiFont(600,12);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='rgba(20,24,36,.9)';ctx.fillText(tx('ahName'),x,y-cam.s*0.55);}}
   if(T-P.born<9){ctx.globalAlpha=clamp(9-(T-P.born),0,1);ctx.font=uiFont(600,12);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.8)';const lx=sx(P.x),ly=sy(P.y)+cam.s*0.6+14;ctx.strokeText(tx('you'),lx,ly);ctx.fillStyle='#2a2216';ctx.fillText(tx('you'),lx,ly);ctx.globalAlpha=1;}
   if(stage==='after'){const t=P.prayed?ZZ:PRAY,x=sx(t.x),y=sy(t.y),m=46;
     if(x<m||x>W-m||y<m+70||y>H-m){const ang=Math.atan2(y-H/2,x-W/2),hw=W/2-m,hh=H/2-m-20,k=Math.min(hw/Math.max(1e-6,Math.abs(Math.cos(ang))),hh/Math.max(1e-6,Math.abs(Math.sin(ang))));
